@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %} Followers {% endblock %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Followers</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Followers</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Default box -->
+  <div class="card card-solid">
+    <div class="card-body pb-0">
+      <div class="row">
+
+        {%for user in content%}
+        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+          <div class="card card-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-info">
+              <div class="row">
+                <div class="col-8">
+                  <h3 class="widget-user-username text-left">{{user['login']}}</h3>
+                  {%if user['location']%}
+                  <h5 class="widget-user-desc text-left">{{user['location']}}</h5>
+                  {%endif%}
+                </div>
+                <div class="col text-right">
+                    
+                  <a href="{{url_for('detail', username=user['login'])}}" class="btn btn-sm btn-primary">
+                    <i class="fas fa-user"></i> View Profile
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="widget-user-image">
+                
+                <img class="img-circle elevation-2" src="{{user['avatar_url']}}"
+                alt="User Avatar">
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">{{user['following']}}</h5>
+                    <span class="description-text">FOLLOWING</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">{{user['followers']}}</h5>
+                    <span class="description-text">FOLLOWERS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">{{user['public_repos']}}</h5>
+                    <span class="description-text">REPOSITORIES</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+        </div>
+        <!-- /.card -->
+        {%endfor%}
+</section>
+{% endblock %}

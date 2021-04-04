@@ -1,5 +1,5 @@
 from flask import render_template, request, json
-import requests
+import requests, random
 
 class Consume:
     def __init__(self):
@@ -24,8 +24,11 @@ class Consume:
 
     def random_user(self):
         url = 'https://api.github.com/users'
+        since = random.randint(0, 30000)
+
         params = {
-            'since' : 0
+            'since' : since,
+            'per_page' : 9
         }
         r = requests.get(url, params = params, headers=self.headers)
 
@@ -74,13 +77,24 @@ class Consume:
     
     def random_repo(self):
         url = 'https://api.github.com/repositories'
-        r = requests.get(url, headers=self.headers)
+        since = random.randint(0,30000)
+        params = {
+            'since' : since
+        }
+        r = requests.get(url, params=params, headers=self.headers)
 
         if r.status_code == 200 :
-            content = json.loads(r.content)
+            repos = json.loads(r.content)
+            content=[]
+            for index, repo in enumerate(repos):
+                content.append(repo)
+                if index == 8:
+                    break
+
         else:
             content = None
         
+        print(content)
         return content
     
     def user_repo(self, username):

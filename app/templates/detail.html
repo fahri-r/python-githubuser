@@ -50,10 +50,10 @@
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Followers</b> <a class="float-right">{{user_detail['followers']}}</a>
+                <b>Followers</b> <a href="{{url_for('followers', username=user_detail['login'])}}" class="float-right">{{user_detail['followers']}}</a>
               </li>
               <li class="list-group-item">
-                <b>Following</b> <a class="float-right">{{user_detail['following']}}</a>
+                <b>Following</b> <a href="{{url_for('followers', username=user_detail['login'])}}" class="float-right">{{user_detail['following']}}</a>
               </li>
               <li class="list-group-item">
                 <b>Repositories</b> <a class="float-right">{{user_detail['public_repos']}}</a>
@@ -122,17 +122,26 @@
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a data-toggle="modal" data-target="#modal-sm{{repo['id']}}br" class="nav-link">
-                  Branches<span class="float-right badge bg-primary">{{branch | length}}</span>
+                  Branches
+                  {%if branch%}
+                  <span class="float-right badge bg-primary">{{branch | length}}</span>
+                  {%endif%}
                 </a>
               </li>
               <li class="nav-item">
                 <a data-toggle="modal" data-target="#modal-lg{{repo['id']}}cm" class="nav-link">
-                  Commits <span class="float-right badge bg-info">{{commit | length}}</span>
+                  Commits 
+                  {%if commit%}
+                  <span class="float-right badge bg-info">{{commit | length}}</span>
+                  {%endif%}
                 </a>
               </li>
               <li class="nav-item">
                 <a data-toggle="modal" data-target="#modal-sm{{repo['id']}}lg" class="nav-link">
-                  Languages <span class="float-right badge bg-success">{{language | length}}</span>
+                  Languages 
+                  {%if language%}
+                  <span class="float-right badge bg-success">{{language | length}}</span>
+                  {%endif%}
                 </a>
               </li>
             </ul>
@@ -149,9 +158,13 @@
                 </button>
               </div>
               <div class="modal-body">
+                {%if branch%}
                 {%for a in branch%}
                 <p>{{a['name']}}</p>
                 {%endfor%}
+                {%else%}
+                <p>No data for Show</p>
+                {%endif%}
               </div>
               <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -172,9 +185,13 @@
                 </button>
               </div>
               <div class="modal-body">
+                {%if commit%}
                 {%for a in commit%}
                 <p>{{a['commit']['message']}}</p>
                 {%endfor%}
+                {%else%}
+                <p>No data for Show</p>
+                {%endif%}
               </div>
               <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -195,9 +212,13 @@
                 </button>
               </div>
               <div class="modal-body">
+                {%if language%}
                 {%for key in language%}
                 <p>{{key}}</p>
                 {%endfor%}
+                {%else%}
+                <p>No data for Show</p>
+                {%endif%}
               </div>
               <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

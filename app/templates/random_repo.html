@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %} Random Repositories {% endblock %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Random Repositories</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Random Repositories</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Default box -->
+  <div class="card card-solid">
+    <div class="card-body pb-0">
+      <div class="row">
+
+        {%for repo, branch, commit, language in repo_detail%}
+        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+          <div class="card card-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-primary">
+              <h3 class="widget-user-username">{{repo['name']}}</h3>
+              {%if repo['description']%}
+              <h5 class="widget-user-desc">
+                {{repo['description']}}
+              </h5>
+              {%endif%}
+            </div>
+            <div class="card-footer p-0">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a data-toggle="modal" data-target="#modal-sm{{repo['id']}}br" class="nav-link">
+                    Branches
+                    {%if branch%}
+                    <span class="float-right badge bg-primary">{{branch | length}}</span>
+                    {%endif%}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a data-toggle="modal" data-target="#modal-lg{{repo['id']}}cm" class="nav-link">
+                    Commits 
+                    {%if commit%}
+                    <span class="float-right badge bg-info">{{commit | length}}</span>
+                    {%endif%}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a data-toggle="modal" data-target="#modal-sm{{repo['id']}}lg" class="nav-link">
+                    Languages 
+                    {%if language%}
+                    <span class="float-right badge bg-success">{{language | length}}</span>
+                    {%endif%}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /.card -->
+
+        
+      
+        <div class="modal fade" id="modal-sm{{repo['id']}}br">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Repository Branch</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {%if branch%}
+                {%for a in branch%}
+                <p>{{a['name']}}</p>
+                {%endfor%}
+                {%else%}
+                <p>No data for Show</p>
+                {%endif%}
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+        <div class="modal fade" id="modal-lg{{repo['id']}}cm">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Repository Commits</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {%if commit%}
+                {%for a in commit%}
+                <p>{{a['commit']['message']}}</p>
+                {%endfor%}
+                {%else%}
+                <p>No data for Show</p>
+                {%endif%}
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+      
+        <div class="modal fade" id="modal-sm{{repo['id']}}lg">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Repository Language</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {%if language%}
+                {%for key in language%}
+                <p>{{key}}</p>
+                {%endfor%}
+                {%else%}
+                <p>No data for Show</p>
+                {%endif%}
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        {%endfor%}
+
+</section>
+{% endblock %}
