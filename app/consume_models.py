@@ -4,7 +4,7 @@ import requests, random
 class Consume:
     def __init__(self):
         self.headers = {
-            'Authorization' : 'token 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'
+            'Authorization' : 'token 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'
         }
 
     def search(self, username):
@@ -94,7 +94,6 @@ class Consume:
         else:
             content = None
         
-        print(content)
         return content
     
     def user_repo(self, username):

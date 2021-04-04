@@ -5,20 +5,20 @@
 {% block content %}
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Random Repositories</h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Random Repositories</li>
-          </ol>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Random Repositories</h1>
       </div>
-    </div><!-- /.container-fluid -->
-  </section>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Random Repositories</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
 
 <!-- Main content -->
 <section class="content">
@@ -52,7 +52,7 @@
                 </li>
                 <li class="nav-item">
                   <a data-toggle="modal" data-target="#modal-lg{{repo['id']}}cm" class="nav-link">
-                    Commits 
+                    Commits
                     {%if commit%}
                     <span class="float-right badge bg-info">{{commit | length}}</span>
                     {%endif%}
@@ -60,7 +60,7 @@
                 </li>
                 <li class="nav-item">
                   <a data-toggle="modal" data-target="#modal-sm{{repo['id']}}lg" class="nav-link">
-                    Languages 
+                    Languages
                     {%if language%}
                     <span class="float-right badge bg-success">{{language | length}}</span>
                     {%endif%}
@@ -72,8 +72,8 @@
         </div>
         <!-- /.card -->
 
-        
-      
+
+
         <div class="modal fade" id="modal-sm{{repo['id']}}br">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -127,7 +127,7 @@
           </div>
           <!-- /.modal-dialog -->
         </div>
-      
+
         <div class="modal fade" id="modal-sm{{repo['id']}}lg">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">

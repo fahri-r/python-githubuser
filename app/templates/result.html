@@ -11,7 +11,8 @@
       <div class="col-md-8 offset-md-2">
         <form action="{{ url_for('search') }}">
           <div class="input-group">
-            <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="{{search}}" name="username">
+            <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here"
+              value="{{search}}" name="username">
             <div class="input-group-append">
               <button type="submit" class="btn btn-lg btn-default">
                 <i class="fa fa-search"></i>
@@ -52,8 +53,7 @@
               </div>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle elevation-2" src="{{user['avatar_url']}}"
-                alt="User Avatar">
+              <img class="img-circle elevation-2" src="{{user['avatar_url']}}" alt="User Avatar">
             </div>
             <div class="card-footer">
               <div class="row">

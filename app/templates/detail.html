@@ -50,10 +50,12 @@
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Followers</b> <a href="{{url_for('followers', username=user_detail['login'])}}" class="float-right">{{user_detail['followers']}}</a>
+                <b>Followers</b> <a href="{{url_for('followers', username=user_detail['login'])}}"
+                  class="float-right">{{user_detail['followers']}}</a>
               </li>
               <li class="list-group-item">
-                <b>Following</b> <a href="{{url_for('followers', username=user_detail['login'])}}" class="float-right">{{user_detail['following']}}</a>
+                <b>Following</b> <a href="{{url_for('following', username=user_detail['login'])}}"
+                  class="float-right">{{user_detail['following']}}</a>
               </li>
               <li class="list-group-item">
                 <b>Repositories</b> <a class="float-right">{{user_detail['public_repos']}}</a>
@@ -130,7 +132,7 @@
               </li>
               <li class="nav-item">
                 <a data-toggle="modal" data-target="#modal-lg{{repo['id']}}cm" class="nav-link">
-                  Commits 
+                  Commits
                   {%if commit%}
                   <span class="float-right badge bg-info">{{commit | length}}</span>
                   {%endif%}
@@ -138,7 +140,7 @@
               </li>
               <li class="nav-item">
                 <a data-toggle="modal" data-target="#modal-sm{{repo['id']}}lg" class="nav-link">
-                  Languages 
+                  Languages
                   {%if language%}
                   <span class="float-right badge bg-success">{{language | length}}</span>
                   {%endif%}
@@ -147,7 +149,7 @@
             </ul>
           </div>
         </div>
-      
+
         <div class="modal fade" id="modal-sm{{repo['id']}}br">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -201,7 +203,7 @@
           </div>
           <!-- /.modal-dialog -->
         </div>
-      
+
         <div class="modal fade" id="modal-sm{{repo['id']}}lg">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
